@@ -1,0 +1,72 @@
+<include file="public/header" />
+<include file="public/nav" />
+	<div class="row-fluid" id="main">
+		<div class="span8 offset2">		
+		    <form class="form-search fr" action="{:U('index')}" method="get">
+		    	<input type="text" name="nickname" value="{$Think.get.nickname}" class="input-medium" placeholder="昵称">
+		    	<input type="text" name="text" value="{$Think.get.text}" class="input-medium" placeholder="内容关键字">
+		    	<button type="submit" class="btn">搜索</button>
+		    </form>
+
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>用户ID</th>
+					<th>昵称</th>
+					<th>头像</th>
+					<th>内容</th>
+					<th>图片名</th>
+					<th>发布时间</th>
+					<th>浏览次数</th>
+					<th>评论数</th>
+					<th>转发数</th>
+					<th>点赞数</th>
+					<th>附带微博(转发)</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+					<notempty name="textlist">
+					<foreach name="textlist" item="val">
+					<tr>
+						<td>{$offset+$a++}</td>
+						<td>{$val.uid}</td>
+						<td>{$val.nickname}</td>
+						<td>{$val.head}</td>
+						<td>{$val.text}</td>
+						<td>{$val.picname}</td>
+						<td>{$val.addtime}</td>
+						<td>{$val.browsenum}</td>
+						<td>{$val.commentnum}</td>
+						<td>{$val.repostnum}</td>
+						<td>{$val.praisenum}</td>
+						<td>{$val.tid}</td>
+						<td>
+							<a href="{:U('del',array('id'=>$val['id']))}">删除</a>
+							<a href="{:U('edit',array('id'=>$val['id']))}">修改</a>
+						</td>
+					</tr>
+					</foreach>
+					<else />
+					<tr>
+						<td colspan="6">查无数据</td>
+					</tr>
+					</notempty>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<ul>
+					{$pageButton}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.pagination ul a').unwrap('div').wrap('<li></li>');
+		$('.pagination ul span').wrap('<li class="active"></li>');
+	</script>
+	<include file="public/footer" />
+	
+	
+	

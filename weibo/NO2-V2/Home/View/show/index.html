@@ -1,0 +1,76 @@
+﻿ <!--导入 头部文件-->
+ <include file="public/header" />
+ <!--导入配置文件-->
+<link href="__PUBLIC__/styles/CustomerIndex.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/styles/global.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="__PUBLIC__/script/CustomerIndex.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/trim.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/jquery-1.6.2.min.js"></script>
+
+    <!-- 内容总容器 mainDIV 开 始-->
+   <div id="main">
+        <!-- 左侧mainBannerDIV 开始 -->
+    <div id="mainBanner">
+            <!--id="mainBannerTitle 首页-->
+            <div id="mainBannerTitle">
+                <!--id="mainBannerTitleWord"-->
+                <div id="mainBannerTitleWord"><b>评论我的</b>
+                </div>
+            </div> 
+            <!--不同人的内容-->
+        <div id="mainBannerContent">
+          <if condition="$result eq null">
+                <font style="font-size: 20px;color:purple;">还没有人评论我哦！</font>
+          </if>
+         <foreach name="result" key="k" item="val">
+            <br/><br/>
+            <div id="mainBannerContent2PeopleWordBack">
+              <table width="400" border="1" style="border-color: #CCCCCC" cellpadding="0" cellspacing="0" align="center" >
+              <tr>
+                <td><a href="#" class="a1">@{$val.sendname}</a> 对你说：<p style="width: 200px;overflow: hidden ;">&nbsp;&nbsp;&nbsp;&nbsp;{$val.text}</p><span style="color:#ccc" ><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发表于 {$val.addtime}</b></span>   
+                <a style="color: #005dc3;font-weight: bold;" onclick="dianjihuifu($id={$val['id']},$tid={$val['tid']})">回复</a>
+                <a href="{:U('del',array('id'=>$val['id'],'tid'=>$val['tid']))}">{$val.delButton}</a>
+                </td>
+              </tr> 
+
+              </table> 
+              <!-- 回复框 -->
+              <div id="huifu" style="display: none;">
+                <!--id=mainBannerTopIssuePoint 提示-->
+                <div align="center" id="huifu_biaoti">回复评论<br/>
+                </div>
+                <form  action="{:U('Comment/reply')}" method="post" >
+                  <div align="center">
+                    <textarea autofocus name="text" rows="3" cols="50"  style="overflow:hidden;border:1px #0CF solid;"></textarea>
+                    <input type="hidden" name="cid"  id="huifu_hidden_cid"></input>
+                    <input type="hidden" name="tid"  id="huifu_hidden_tid"></input>
+                  </div>
+                  <!--确认发布-->
+                  <div id="huifu_fabu" align="center">
+                    <br/>
+                    <input type="submit" value="发布">
+                  </div>
+                </form>
+              </div>
+            </div>
+          </foreach>
+        </div>    
+            <div align="center" >{$pageButton}</div> 
+    </div>
+<script type="text/javascript">
+        function dianjihuifu($id,$tid)
+        {
+          var huifu = document.getElementById("huifu");
+          huifu.style.display = "block";
+          var cid = document.getElementById('huifu_hidden_cid');
+          var tid = document.getElementById('huifu_hidden_tid');
+
+          cid.value = $id;
+          tid.value = $tid;
+        }
+      </script>
+      <!-- 导入右侧 侧边栏-->
+      <include file="public/right" />
+
+<!-- footer部分 -->
+<include file="public/footer" />

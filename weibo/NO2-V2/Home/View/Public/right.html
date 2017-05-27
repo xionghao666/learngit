@@ -1,0 +1,131 @@
+<!-- 右侧mainRight DIV开始 -->
+  <div id="mainRight">
+          <table width="200" border="0" cellpadding="0" cellspacing="0" bgcolor="#E9F4FA">
+ 				<tr>
+                    <td bgcolor="#E9F4FA">
+                    	<!-- 右侧mainRightPostionFirstLine DIV 开始 -->
+                    	<div id="mainRightPostionFirstLine"><br/>
+                            <!-- 右侧mainRightPostionFirstLineIcon DIV 开始 -->
+                            <div style="height:58px;">
+                            <div id="mainRightPostionFirstLineIcon">
+                             <!-- <font> sfd</font> -->
+                            	<a href="{:U('Person/index',array('id'=>$_SESSION['home']['id']))}"><img src="__PUBLIC__/Uploads/{$_SESSION['home']['picname']}" alt="" width="48" height="48" align="absmiddle" title="" border="0" /></a>
+                            </div >
+                            <!-- 右侧mainRightPostionFirstLineIcon DIV 结束 -->
+                            <!-- 右侧mainRightPostionFirstLineWord1 DIV 开始 -->
+                            <div id="mainRightPostionFirstLineWord1">                 
+                            &nbsp;<font color="#005DC3" ><b><a href="{:U('Person/index',array('id'=>$_SESSION['home']['id']))}" class="a1">{$_SESSION['home']['nickname']}</a></b></font><br /><br/>
+                            个性签名：{$_SESSION['home']['sign']}
+                            </div>
+                            </div>
+                            <!-- 右侧mainRightPostionFirstLineWord1 DIV 结束 -->
+                        	<!-- 右侧mainRightPostionFirstLineWord2 DIV 开始 -->
+                          <div id="mainRightPostionFirstLineWord2">
+                          <br/>
+                                <ul>
+                                	<a href="{:U('Person/index')}" class="a1"><li><font class="style1"> {$_SESSION['home']['textnum']}</font><br /><font class="style2">微博</font></li></a>
+   								    <a href="{:U('Person/gz')}" class="a1"><li><font class="style1">       &nbsp;{$_SESSION['home']['gznum']}</font><br /><font class="style2">关注</font></li></a>
+   								    <a href="{:U('Person/fs')}" class="a1"><li><font class="style1">&nbsp;{$_SESSION['home']['fsnum']}</font><br /><font class="style2">粉丝</font></li></a>
+                                </ul>
+                           </div>
+                           <!-- 右侧mainRightPostionFirstLineWord2 DIV 结束 -->                    
+                        </div>
+                        <!-- 右侧mainRightPostionFirstLine DIV 结束 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td bgcolor="#E9F4FA">                    
+                        <!-- 右侧mainRightPostionSecondLine DIV 开始 -->
+                        <div id="mainRightPostionSecondLine">
+                            <!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
+                            <div id="mainRightPositionSecondLineContent">
+                                <!-- <a href="#" class="a1"><font style="font-size:16px;font-weight:700; color:#000;">首页</font></a><br /> -->
+                                <hr color="#79BDD1" zize="2" style="" />
+                                <a href="{:U('At/index')}" class="a1"><font class="style3">提到我的</font></a>
+                                <hr class="h1">
+                                <a href="{:U('show/index')}" class="a1"><font class="style3">我的评论</font></a>
+                                <hr class="h1">
+                                <a href="{:U('Sx/index')}" class="a1"><font class="style3">私信我的</font></a><a href="{:U('Sx/look')}" class="a1"><font class="style3">(我的私信)</font></a>
+                                <hr class="h1">
+                                <a href="{:U('Collect/index')}" class="a1"><font class="style3">我的收藏</font></a>
+                                <hr class="h1">
+                                <a href="{:U('Topic/choose')}" class="a1"><font class="style3">选择兴趣话题</font></a>
+                            </div>
+                            <!-- 右侧mainRightPositionSecondLineContent DIV 开始 -->
+                        </div>
+                        <!-- 右侧mainRightPostionSecondLine DIV 结束 -->
+                    </td>
+                </tr>
+                <tr>
+                  <td>  
+                        <!-- 右侧mainRightPostionThirdLine DIV 开始 -->
+                        <div id="mainRightPostionThirdLine">
+                            <!-- 右侧mainRightPositionThirdLineContent DIV 开始 -->
+                            <div id="mainRightPositionThirdLineContent">
+                            <!-- <p><a href="#" onclick="" class="a1"><font class="style4">你可能感兴趣的人</font>
+                            <img src="__PUBLIC__/images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a></p>
+                            <br />
+                            <div id="d32" style="float:right"><a href="#" class="a1">查看更多</a></div> -->
+                            <a href="http:\\www.weibo.com"><img src="__PUBLIC__/images/adc.jpg" alt="" width="200" height="100" style="margin-left: -15px;margin-top: -10px;"></a>
+                            </div>                    	
+                            <!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->	
+                        </div>
+                        <!-- 右侧mainRightPostionThirdLine DIV 开始 -->
+                  </td>
+                </tr>
+                <tr>
+                    <td>
+                        <!-- 右侧mainRightPostionFourthLine DIV 开始 -->
+                        <div id="mainRightPostionFouthLine">
+                        	<!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->	
+                        	<div id="mainRightPositionFourthLineContent">
+                            <form action="{:U('Topic/index')}" method="post">
+                              <input type="text" name="topic" id="textfield1"/><input type="submit" value="搜索" />
+                              
+                            </form>
+                            <a href="{:U('Topic/show')}" onclick="" class="a1"><font class="style4" style="color:purple;">热门话题传送门</font>
+                            <img src="__PUBLIC__/images/ThirdLineUpArrow.gif" alt="" width="12" height="14" align="right" title="" border="0"/></a>
+                            <ul id="ul2" style="line-height:25px;">
+                            	<a href="{:U('Topic/index',array('topic'=>'明星'))}" class="a1"><li><font class="style2">明星({$_SESSION['home']['counttopic']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'娱乐'))}" class="a1"><li><font class="style2">八卦娱乐({$_SESSION['home']['counttopic1']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'维多利亚'))}" class="a1"><li><font class="style2">维密秀({$_SESSION['home']['counttopic11']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'汽车'))}" class="a1"><li><font class="style2">汽车({$_SESSION['home']['counttopic2']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'医学'))}" class="a1"><li><font class="style2">医学({$_SESSION['home']['counttopic3']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'搞笑'))}" class="a1"><li><font class="style2">搞笑({$_SESSION['home']['counttopic4']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'时尚穿搭'))}" class="a1"><li><font class="style2">时尚穿搭({$_SESSION['home']['counttopic7']}</font>)</li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'川普'))}" class="a1"><li><font class="style2">川普({$_SESSION['home']['counttopic6']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'职场'))}" class="a1"><li><font class="style2">职场({$_SESSION['home']['counttopic8']})</font></li></a>
+
+                                <a href="{:U('Topic/index',array('topic'=>'电影'))}" class="a1"><li><font class="style2">电影({$_SESSION['home']['counttopic9']})</font></li></a>
+                            </ul>
+                            </div>
+                            <!-- 右侧mainRightPositionThirdLineContent DIV 结束 -->	
+                        </div>
+                        <!-- 右侧mainRightPostionFoutrhLine DIV 结束 -->
+                    </td>
+                </tr>
+                <tr>
+                    <td><!-- 右侧mainRightPostionSeventhLine DIV 开始 -->
+                    <a href="http:\\www.weibo.com"><img src="__PUBLIC__/images/weigao.jpg" width="200" alt=""></a>
+                    <div id="mainRightPostionSeventhLine">
+                        <div id="mainRightPositionSevenLineContent">
+                        Weico微博的成长，离不开你。<br />
+                        <font class="style2"><a href="#" class="a1">有意见要提（点击） </a><br /><br />
+                        <a href="#" class="a1" onclick="set()" >不良信息举报中心</a></font> 
+                        </div>
+                    </div>
+                    <!-- 右侧mainRightPostionSeventhLine DIV 结束 -->
+                    </td>
+                </tr>
+          </table>
+     </div>
+      <!-- 右侧mainRightDiv 结束 -->
+  </div>

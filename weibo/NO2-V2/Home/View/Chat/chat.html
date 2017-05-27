@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	 <form action="{:U('chat')}" method="post" enctype="multipart/form-data">
+	 	 <input type="hidden" name="getid" value="{$getid}"/>
+	 	 <input type="hidden" name="sendid" value="1"/>
+         <textarea name="text" cols="30" rows="5"></textarea><br/>
+         <input type="file" name="picname"/><br/>
+         <input type="submit" value="私信发送"><br/>
+	 </form>
+</body>
+</html>

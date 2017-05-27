@@ -1,0 +1,97 @@
+
+    <include file="Public/header" />
+     <include file="Public/nav" />
+     <div class="row-fluid" id="main">
+          <div class="span8 offset2">   
+               <form class="form-horizontal " action="{:U('edit')}" method="post" enctype="multipart/form-data">
+                    <h3>个人基本信息</h3>
+                   <input type="hidden" name="id" value="{$info['id']}"/>
+                    
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">真实姓名</label>
+                         <div class="controls">
+                              <input type="text" id="inputEmail" name="name" value="{$info['name']}" placeholder="真实姓名">
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">性别</label>
+                        <div class="controls">
+                         <select name="sex" value="{$info['sex']}">
+                               <option value="">请选择</option>
+                               <option value="1" {$info['sex'] ==1?'selected':''}>男</option>
+                               <option value="2" {$info['sex'] ==2?'selected':''}>女</option>
+                         </select>
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">地址</label>
+                         <div class="controls">
+                              <input type="text" id="inputEmail" name="address" value="{$info['address']}" placeholder="地址">
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">联系电话</label>
+                         <div class="controls">
+                              <input type="text" id="inputEmail" name="phone" value="{$info['phone']}" placeholder="电话">
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">E-mail</label>
+                         <div class="controls">
+                              <input type="text" id="inputEmail" name="email" value="{$info['email']}" placeholder="Email">
+                         </div>
+                    </div>
+                    < <div class="control-group">
+                         <label class="control-label" for="inputEmail">头像</label>
+                         <div class="controls">
+                              <input type="file" id="inputEmail" name="picname" placeholder="头像">
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">昵称</label>
+                         <div class="controls">
+                              <input type="text" id="inputEmail" name="nickname" value="{$info['nickname']}" placeholder="昵称">
+                         </div>
+                    </div>
+                    
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">状态</label>
+                         <div class="controls">
+                              <select name="state" value="{$info['state']}">
+                                   <option value="1" {$info['state'] ==1?'selected':''}>普通用户</option>
+                                   <option value="2" {$info['state'] ==2?'selected':''}>管理员</option>
+                                   <option value="3" {$info['state'] ==3?'selected':''}>禁用</option>
+                                   <option value="4" {$info['state'] ==4?'selected':''}>VIP</option>
+                              </select>
+                         </div>
+                    </div>
+                     <div class="control-group">
+                         <label class="control-label" for="inputEmail">原密码</label>
+                         <div class="controls">
+                              <input type="password" id="inputEmail" name="oldpass" placeholder="原密码">
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">新密码</label>
+                         <div class="controls">
+                              <input type="password" id="inputEmail" name="password"  placeholder="新密码">
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <label class="control-label" for="inputEmail">确认新密码</label>
+                         <div class="controls">
+                              <input type="password" id="inputEmail" name="repass" placeholder="再次确认">
+                         </div>
+                    </div>
+                    <div class="control-group">
+                         <div class="controls">
+                              <label class="checkbox">
+                                   &nbsp;
+                              </label>
+                              <button class="btn btn-large btn-primary form-submit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                         </div>
+                    </div>
+               </form>             
+          </div>
+     </div>
+    <include file="Public/footer" />

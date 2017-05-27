@@ -1,0 +1,104 @@
+﻿ <!--导入 头部文件-->
+ <include file="public/header" />
+ <!--导入配置文件-->
+<link href="__PUBLIC__/styles/CustomerIndex.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/styles/global.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="__PUBLIC__/script/CustomerIndex.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/trim.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/jquery-1.6.2.min.js"></script>
+
+    <!-- 内容总容器 mainDIV 开 始-->
+   <div id="main">
+        <!-- 左侧mainBannerDIV 开始 -->
+    <div id="mainBanner">
+            <!--id="mainBannerTitle 首页-->
+            <div id="mainBannerTitle">
+                <!--id="mainBannerTitleWord"-->
+                <div id="mainBannerTitleWord"><b>提到我的</b>
+                </div>
+            </div> 
+            <!--不同人的内容-->
+        <div id="mainBannerContent">
+            <!--个人展示-->
+            <if condition="$result eq null">
+                <font style="font-size: 20px;color:purple;">还没有人AT我哦！</font>
+            </if>
+            <foreach name="result" item="val">
+            	<div class="stateShow" onmouseover="stateMouseOver(this)" onmouseout="stateMouseOut(this)">
+                <div class="stateShowWord">
+                  <table width="450" border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                    <tr>
+                      <td width="70" align="center" valign="top">
+                        <a href="{:U('Person/index',array('id'=>$val['uid']))}">
+                          <img src="__PUBLIC__/Uploads/{$val.head}" alt="" width="48" height="48" />
+                        </a>
+                      </td>
+                      <td width="380" ><a href="{:U('Person/index',array('id'=>$val['uid']))}">@{$val.nickname}:</a>
+                        <!--会员标志图片-->
+                        <!-- 
+                        <img src="__PUBLIC__/images/1.gif" align="absmiddle" style="border:none;" /> 
+                        -->
+                        {$val.text}
+                      </td>
+                    </tr>
+                  </table>
+                  <if condition="$val['picname'] neq null">
+                    <div class="stateImgShow">
+                    <div class="small" style="width:100px">
+                        <img width="100px" src="__PUBLIC__/Uploads/{$val.picname}" />
+                    </div><img class="big" width="150px" src="__PUBLIC__/Uploads/{$val.picname}" /> 
+                    </div>
+                </if>
+                </div>
+                
+
+              <if condition="$val['repost'] neq null">
+                    <td bgcolor="gray"><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('Person/index',array('id'=>$val['repost']['uid']))}"><img src="__PUBLIC__/Uploads/{$val['repost'].head}" width="30px"><b style="font-weight:bold;"></a>&nbsp;<a href="{:U('Person/index',array('id'=>$val['repost']['uid']))}">@{$val['repost'].nickname}</a>:</b><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$val['repost'].text}<br/><br/></td><br/>
+                  </if>
+
+                <if condition="$val['repost']['picname'] neq null">
+                        <div class="stateImgShow">
+                            <div class="small" style="width:70px">
+                                <img width="70px" src="__PUBLIC__/Uploads/{$val['repost']['picname']}" />
+                            </div><img class="big" width="90px" src="__PUBLIC__/Uploads/{$val['repost']['picname']}" />
+                            
+                        </div> 
+                    </if>
+                <div class="stateShowtime"> {$val.addtime} </div>
+                <div class="stateOp">
+                  <a class="opState" href="{:U('Collect/collect',array('id'=>$val['id']))}">{$val.collectButton}</a>
+                  <a class="opState" href="{:U('Repost/index',array('id'=>$val['id'],'tid'=>$val['tid']))}">转发({$val.repostnum})</a>
+                  <a class="opState" href="{:U('Comment/index',array('id'=>$val['id']))}">评论({$val.commentnum})</a>
+                  <!-- <a class="opState" onclick="reXianShi(this)">评论({$val.commentnum})</a> -->
+                  <a class="opState" href="{:U('praise',array('id'=>$val['id']))}">{$val.praiseButton}({$val.praisenum})</a>
+                  <a class="opState" href="{:U('Sx/index',array('getid'=>$val['uid']))}">{$val.mesButton}</a>
+                  <a class="opState" href="{:U('del',array('id'=>$val['id']))}">{$val.delButton}</a>
+                </div>
+              </div>
+              <br/>
+            </foreach>
+            <!--个人展示结束-->
+            <div align="center">{$pageButton}</div>
+        </div>
+      </div>
+
+      <!-- 左侧mainBanner DIV 结束-->
+
+      <!-- 引入放大镜JS特效 -->
+    <script type="text/javascript">
+       
+           $('.small').mouseover(function(){
+            var offset = $(this).offset(); 
+            $(this).next().css('top',(offset.top-400)).css('left',(offset.left-100)).css('display','block');
+           });
+           $('.small').mouseout(function(){
+            $(this).next().css('display','none');
+           });
+        
+    </script>
+    <!-- 引入放大镜JS特效 -->
+      <!-- 导入右侧 侧边栏-->
+      <include file="public/right" />
+
+<!-- footer部分 -->
+<include file="public/footer" />

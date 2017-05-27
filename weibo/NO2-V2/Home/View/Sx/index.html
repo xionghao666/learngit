@@ -1,0 +1,150 @@
+ <!--导入 头部文件-->
+ <include file="public/header" />
+ <!--导入配置文件-->
+<link href="__PUBLIC__/styles/CustomerIndex.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/styles/global.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="__PUBLIC__/script/CustomerIndex.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/trim.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/jquery-1.6.2.min.js"></script>
+    <!-- 内容总容器 mainDIV 开 始-->
+   <div id="main">
+        <!-- 左侧mainBannerDIV 开始 -->
+    <div id="mainBanner">
+        	<!-- mainBannerTop DIV 开始 -->
+      <div id="mainBannerTop">
+            <!--id=mainBannerTopIssue 发布框-->
+        <div id="mainBannerTopIssue">
+          <!--id=mainBannerTopIssuePoint 提示-->
+          <if condition="$userinfo['nickname'] neq null">
+            <div id="mainBannerTopIssuePoint">给<a href="{:U('Person/index',array('id'=>$userinfo['id']))}">{$userinfo.nickname}</a>发私信
+          <else /> <div id="mainBannerTopIssuePoint">当前暂无收信人
+          </if>
+         
+          </div>
+          <div style="float:right;">您还可以输入<font id="counter1">140</font>字！
+          </div>
+          <form action="{:U('Sx/index')}" method="post" enctype="multipart/form-data">
+          <div id="mainBannerTopIssueForm">
+                  <!--id="mainBannerTopIssueFrame-->
+          <div id="mainBannerTopIssueFrame">
+          <textarea name="text" rows="4" class="Size" id="textfield2" maxlength="140" style="overflow:hidden;border:1px #0CF solid;resize:none;" onkeyup="check(this)"></textarea>
+          <script>
+            var counter1 = document.getElementById('counter1');
+            var num = 140;
+            function check(obj){
+              var msg = obj.value;
+              counter1.innerHTML = num - msg.length;
+            }
+          </script>
+          <input type="hidden" name="getid" value="{$userinfo.id}"></input>
+          <input type="hidden" name="getnickname" value="{$userinfo.nickname}">
+                    <div id="mainBannerTopIssueInsert1">
+                        <input style="opacity: 0" type="file" id="inputEmail" name="picname">
+                    </div>
+                     &nbsp;<div id="mainBannerTopIssueInsert2">插入图片</div>
+                     
+          </div>
+                  <!--id="mainBannerTopIssueInsert 插入链接-->
+              <div id="mainBannerTopIssueInsert">
+                  <!--4个小div-->
+              </div>
+                <!--确认发布-->
+              <div id="mainBannerTopIssueSure">
+                <div id="mainBannerTopIssueSure2">
+                  <input type="submit" value="发送" style="background-color: #3295E6;width:70px;height: 30px;">
+                </div>
+              </div>
+              </div>
+          </form>
+          </div>
+        </div>
+            <!--id="mainBannerTitle 首页-->
+            <div id="mainBannerTitle">
+                <!--id="mainBannerTitleWord"-->
+                <div id="mainBannerTitleWord"><b>私信我的</b>
+                </div>
+                <!--首页提示与隐藏-->
+                <div id="mainBannerTitleWord2">
+                        <input type="checkbox" name="checkbox" id="checkbox" onclick="tdImgState()"/>
+                        隐藏图片 
+                </div>
+            </div> 
+            <!--不同人的内容-->
+        <div id="mainBannerContent">
+            <!--个人展示-->
+            	<div class="stateShow" onmouseover="stateMouseOver(this)" onmouseout="stateMouseOut(this)">
+                <div class="stateShowWord">
+                  
+                </div>
+                <div class="stateImgShow">
+                  
+                </div>  
+                
+                <br/> <br/>
+                <div id="mainBannerContent2PeopleWordBack">
+                   <table width="200" border="0" cellpadding="0" cellspacing="0">
+                    <if condition="$chatlist eq null">
+                      <font style="font-size: 20px;color:purple;">还没有人私信我哦！</font>
+                    </if>
+                   <foreach name="chatlist" key="k" item="val">
+                      
+                      <tr>
+                        <td>
+                          <img src="__PUBLIC__/Uploads/{$val['sendpicname']}" width="40" height="40" alt="">
+                        <a href="{:U('Person/index',array('id'=>$val['sendid']))}" class="a1">{$val.sendnickname}</a>&nbsp;说：
+                        </td>
+                      </tr>
+                      <tr></tr>
+                      <tr></tr>
+                      <tr>
+                         <td>
+                            <div style="width:500px;overflow:hidden;">
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$val.text}
+                                <if condition="$val['picname'] neq 'null.jpg'">
+                                  <div class="small" style="width:200px;height:200px"><img src="__PUBLIC__/Uploads/{$val['picname']}" width="200" height="220" alt=""></div><img src="__PUBLIC__/Uploads/{$val['picname']}" class="big" height="400" alt="">
+                                  
+                                  </else>
+                                </if>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span style="color:#ccc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发表于 {$val.time}</span></td>
+                      </tr>
+                   </foreach>
+                      <tr>
+                        <td>{$pageButton}</td>
+                      </tr>
+                    </table>
+
+                    
+              </div>
+              </div>
+              <br/>
+            <!--个人展示结束-->
+     
+        </div>
+      </div>
+      <!-- 左侧mainBanner DIV 结束-->
+      
+      <script type="text/javascript">
+           
+           
+           $('.small').mouseover(function(){
+
+            var offset = $(this).offset(); 
+            $(this).next().css('top',(offset.top-400)).css('left',(offset.left-100)).css('display','block');
+             
+           });
+           $('.small').mouseout(function(){
+            $(this).next().css('display','none');
+           });
+           
+        </script>
+
+      <!-- 导入右侧 侧边栏-->
+      <include file="public/right" />
+    <!-- 内容总容器 mainDIV 结束-->
+
+<!-- 导入footer部分 -->
+  <include file="public/footer" />

@@ -1,0 +1,58 @@
+<include file="public/header" />
+<include file="public/nav" />
+	<div class="row-fluid" id="main">
+		<div class="span8 offset2">		
+		    <form class="form-search fr" action="{:U('index')}" method="get">
+		    	<input type="text" name="sendid" value="{$Think.get.sendid}" class="input-medium" placeholder="发送者">
+		    	<input type="text" name="text" value="{$Think.get.text}" class="input-medium" placeholder="内容关键字">
+		    	<button type="submit" class="btn">搜索</button>
+		    </form>
+
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>ID</th>
+					<th>发送者ID</th>
+					<th>接受者ID</th>
+					<th>私信内容</th>
+					<th>私信时间</th>
+					<th>图片名</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+					<notempty name="chatlist">
+					<foreach name="chatlist" item="val">
+					<tr>
+						<td>{$offset+$a++}</td>
+						<td>{$val.sendid}</td>
+						<td>{$val.getid}</td>
+						<td>{$val.text}</td>
+						<td>{$val.time}</td>
+						<td>{$val.picname}</td>
+						<td>
+							<a href="{:U('del',array('id'=>$val['id']))}">删除</a>
+							<a href="{:U('edit',array('id'=>$val['id']))}">修改</a>
+						</td>
+					</tr>
+					</foreach>
+					<else />
+					<tr>
+						<td colspan="6">查无数据</td>
+					</tr>
+					</notempty>
+				</tbody>
+			</table>
+			<div class="pagination">
+				<ul>
+					{$pageButton}
+				</ul>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.pagination ul a').unwrap('div').wrap('<li></li>');
+		$('.pagination ul span').wrap('<li class="active"></li>');
+	</script>
+	<include file="public/footer" />
+	

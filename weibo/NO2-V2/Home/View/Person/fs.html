@@ -1,0 +1,96 @@
+<!--导入 头部文件-->
+<include file="public/header" />
+<link href="__PUBLIC__/styles/global.css" type="text/css" rel="stylesheet">
+<link href="__PUBLIC__/styles/friend maneger.css" type="text/css" rel="stylesheet">
+  <!-- 页面主体 -->
+  <div id="banner">
+    <table width="765" border="0" cellpadding="0" cellspacing="0" id="tb1">
+      <tr>
+        <td width="21" rowspan="7" class="td1"></td>
+        <td height="60" align="center" valign="middle" bgcolor="#FFFFFF" class="td2">
+        <img src="__PUBLIC__/Uploads/{$info['picname']}" width="90" height="90" alt="" /></td>
+        <td height="60" class="td3"><font color="#000000" size="3"><b>粉丝数量（{$count}）</b></font></td>
+        <td rowspan="7" class="td1 height"></td>
+      </tr>
+      <tr>
+        <td height="47" align="center" valign="middle" bgcolor="#e3f1fa" class="td2 font1">详细</td>
+        <td height="45" align="center" valign="middle" bgcolor="#e3f1fa" class="td4 font1"> 列表
+        </td>
+      </tr>
+      <foreach name="userinfo" item="val">
+        
+      <tr>
+        <td height="105" align="center" valign="middle" class="td2">
+          <div style="overflow:hidden;border-radius:50px;width:80px;height:80px;">
+
+             <img src="__PUBLIC__/Uploads/{$val['picname']}" width="90" height="90" alt="" />
+
+          </div>
+       </td>
+        <td height="105" align="left" valign="center" class="td3"><font color="#005dc3" size="3" face="微软小黑"><b><a href="{:U('Person/index',array('id'=>$val['id']))}">{$val.nickname}</a></b></font>
+        <br /><font color="#000000" size="2">个性签名:</font>
+        <br /><font color="#000000" size="2">{$val.sign}</font>
+       
+       <div id="focus1">
+       <if condition="$val['gz'] eq '已关注'">
+       <img src="__PUBLIC__/images/ok.png" alt="" width="16" height="16" align="texttop" />
+       <else /><img src="__PUBLIC__/images/err.png" alt="" width="16" height="16" align="texttop" />
+       </if>
+       {$val.gz}<a href="{:U('person/qxgz',array('id'=>$val['id']))}">{$val.gz1}</a></div></td>
+      </tr>
+         
+      </foreach>
+      
+      <tr>
+        <td height="35" class="td2">{$pageButton}</td>
+        <td height="35" class="td3"></td>
+      </tr>
+    </table>
+    <table width="200" border="0" cellpadding="0" cellspacing="0" id="tb2">
+      <tr>
+       
+        <td height="65" align="left" class="font2">
+           <!-- 粉丝页面用户头像 -->
+            <div id="mainRightPostionFirstLineIcon" style="overflow:hidden;border-radius:50px;width:80px;height:80px;">
+
+                    <a href="#"><img src="__PUBLIC__/Uploads/{$info.picname}" alt="" width="90" height="90" align="absmiddle" title="" border="0" /></a>
+                    
+            </div>　
+                    <a href="{:U('person/index',array('id'=>$info['id']))}">{$info.nickname}</a>
+        <!-- 　　用户个性签名 -->
+        <br />个性签名:{$info.sign}</td>
+      </tr>
+      <tr>
+        <td height="60" class="font2" width="120"><br /><font color="black" size="3" face="微软小黑"><b>　　{$wbcount}&nbsp; {$countgz}&nbsp; {$fscount}</b></font>
+        <br />
+        　　<font color="#005dc3"> <a href="{:U('Person/index',array('id'=>$info['id']))}">微博</a><a href="{:U('Person/gz',array('id'=>$info['id']))}">&nbsp;&nbsp;关注</a><a href="{:U('Person/fs',array('id'=>$info['id']))}">&nbsp;&nbsp;粉丝</a></font></td>
+      </tr> 
+      <tr>
+        <td height="30" align="left" valign="top">
+        <br /> 
+        &nbsp;&nbsp;&nbsp;<font color="#666666" size="3"><a href="{:U('Topic/look')}">我关注的话题</a></font></td>
+      </tr>
+      <tr>
+        <td height="50" align="left" valign="top">
+        <br /> 
+        &nbsp;&nbsp;&nbsp;<font color="#666666" size="3">关注我的</font></td>
+      </tr>
+      <foreach name="userinfo" item="val">
+      <tr>
+          <td width="100" height="70"><div style="overflow:hidden;border-radius:40px;width:50px;height:50px;">
+              <img src="__PUBLIC__/Uploads/{$val['picname']}" width="60" height="60" alt="" />
+          </div><td>
+         <td align:"left"><font color="#005dc3" size="2" face="微软小黑"><b><a href="{:U('Person/index',array('id'=>$val['id']))}">{$val.nickname}</a></b></font>
+        </br></td>
+      </tr>
+      </foreach>
+
+        <tr>
+         <td height="95"> 
+         <br /> &nbsp;&nbsp;&nbsp;<font color="#005dc3"> 有意见请（点击）</font>
+         <p> &nbsp;&nbsp;&nbsp;<font color="#005dc3"> 不良信息举报中心</font></p></td>
+       </tr>
+    </table>
+  </div>
+<!-- footer部分 -->
+<include file="public/footer" />

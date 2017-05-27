@@ -1,0 +1,25 @@
+<include file="public/header" />
+<include file="public/nav" />
+<div class="row-fluid" id="main">
+		<div class="span8 offset2">	
+			<form class="form-horizontal " action="{:U('edit')}" method="post">
+				<input type="hidden" name="id" value="{$info.id}">
+				<h3>评论内容</h3>
+				<div class="control-group">
+					<label class="control-label" for="inputEmail"></label>
+					<div class="controls">
+						<input type="text" id="inputEmail" readonly name="text" style="width:300px;" value='该评论内容涉及违规已被删除！'>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox">
+							&nbsp;
+						</label>
+						<button class="btn btn-large btn-primary form-submit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>		
+			</form>			
+		</div>
+	</div>
+	<include file="public/footer" />

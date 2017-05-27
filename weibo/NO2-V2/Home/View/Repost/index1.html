@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<p >转发微博:</p>
+	<form action="{:U('index')}" method="post">
+	<table>
+		<tr>
+			<input type="hidden" name="tid" value="{$result.id}"></input>
+			<input type="hidden" name="ttid" value="{$result1.id}"></input>
+			<if condition="$result1 neq null">
+				<textarea type="text" name="text" cols="50" rows="8" >//@{$result1.nickname}:{$result1.text}</textarea><br/>
+			<else />
+				<textarea type="text" name="text" cols="50" rows="8" ></textarea><br/>
+			</if>
+	    	
+	    </tr>
+	    <tr >
+    		
+    		<td><img src="__PUBLIC__/Uploads/{$result.head}" width="30px"><b style="font-weight:bold;">@{$result.nickname}:</b><br/>&nbsp;&nbsp;{$result.text}</td><br/>
+	    </tr>
+	</table><br/>
+	<input type="submit" value="发布">
+	</form>
+</body>
+</html>

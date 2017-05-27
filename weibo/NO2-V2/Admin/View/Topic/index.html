@@ -1,0 +1,58 @@
+
+	<include file="Public/header" />
+	<include file="Public/nav" />
+	
+	
+	<div class="row-fluid" id="main">
+		<div class="span8 offset2">		
+		    <form class="form-search fr" action="{:U('index')}" method="get">
+		    	<input type="text" name="topic" value="{$Think.get.name}" class="input-medium" placeholder="话题">
+		    	
+		    	<button type="submit" class="btn">搜索</button>
+		    </form>
+
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>编号</th>
+					<th>话题</th>
+					<th>图片</th>
+				</tr>
+				</thead>
+				<tbody>
+				 <notempty name="topiclist">
+				   <foreach name="topiclist" item="val">
+					<tr>
+						<td>{$val.id}</td>
+						<td>{$val.topic}</td>
+						<td><img width="50px" src="__PUBLIC__/images/{$val.picname}" alt=""></td>
+						
+						
+						<td>
+							<a href="{:U('Topic/del',array('id'=>$val['id']))}">删除</a> 
+						</td>
+					</tr>
+					</foreach>
+				   <else />
+				   <tr>
+				   	  <td colspan="4">查无此数据</td>
+				   </tr>	
+					</notempty>
+				</tbody>
+				
+			</table>
+			<div class="pagination">
+				<ul>
+					{$pageButton}
+				</ul>
+			</div>
+		</div>
+	</div>
+	 <script>
+	 	
+	 	$('.pagination ul a').unwrap('div').wrap('<li></li>');
+	 	$('.pagination ul span').wrap('<li class="active"></li>')
+	 </script>
+	<include file="Public/footer" />
+	
+	

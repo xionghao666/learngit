@@ -1,0 +1,122 @@
+ <!--导入 头部文件-->
+ <include file="public/header" />
+ <!--导入配置文件-->
+<link href="__PUBLIC__/styles/CustomerIndex.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/styles/global.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="__PUBLIC__/script/CustomerIndex.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/trim.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/jquery-1.6.2.min.js"></script>
+    <!-- 内容总容器 mainDIV 开 始-->
+   <div id="main">
+        <!-- 左侧mainBannerDIV 开始 -->
+    <div id="mainBanner">
+        	<!-- mainBannerTop DIV 开始 -->
+      
+            <!--id="mainBannerTitle 首页-->
+            <div id="mainBannerTitle">
+                <!--id="mainBannerTitleWord"-->
+                <div id="mainBannerTitleWord"><b>我发的私信</b>
+                </div>
+                <!--首页提示与隐藏-->
+                <div id="mainBannerTitleWord2">
+                        <input type="checkbox" name="checkbox" id="checkbox" onclick="tdImgState()"/>
+                        隐藏图片 
+                </div>
+            </div> 
+            <!--不同人的内容-->
+        <div id="mainBannerContent">
+            <!--个人展示-->
+            	<div class="stateShow" onmouseover="stateMouseOver(this)" onmouseout="stateMouseOut(this)">
+                <div class="stateShowWord">
+                  <!-- <table width="450" border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                    <tr>
+                      <td width="70" align="center" valign="top">
+                        <a href="{:U('Person/index',array('id'=>$text[uid]))}">
+                          <img width="50px" src="__PUBLIC__/Uploads/{$text.head}">
+                      </td>
+                      <td width="380" ><a href="{:U('Person/index',array('id'=>$text[uid]))}">@{$text.nickname}:</a>
+                        <!--会员标志图片-->
+                        <!-- 
+                        <img src="__PUBLIC__/images/1.gif" align="absmiddle" style="border:none;" /> 
+                        -->
+                     <!--    {$text.text}
+                      </td>
+                    </tr>
+                  </table> --> 
+                </div>
+                <div class="stateImgShow">
+                  <!--微博附带图片-->
+                  <!-- <img src="__PUBLIC__/images/state1.jpg" /> -->
+                </div>  
+                <div class="stateShowtime"> {$text.addtime} </div>
+               <!--  <div class="stateOp">
+                  <a class="opState" href="{:U('Repost/index',array('id'=>$val['id'],'tid'=>$val['tid']))}">转发({$val.repostnum})</a>
+                  <a class="opState" href="{:U('Comment/index',array('id'=>$val['id']))}">评论({$val.commentnum})</a>
+                  <a class="opState" onclick="reXianShi(this)">评论({$val.commentnum})</a>
+                  <a class="opState" href="{:U('praise',array('id'=>$val['id']))}">{$val.praiseButton}({$val.praisenum})</a>
+                  <a class="opState" href="{:U('del',array('id'=>$val['id']))}">{$val.delButton}</a>
+                </div> -->
+                <br/> <br/>
+                <div id="mainBannerContent2PeopleWordBack">
+                   <table width="200" border="0" cellpadding="0" cellspacing="0">
+
+                   <foreach name="chatlist" key="k" item="val">
+
+                      <tr>
+                        <td>
+                          <img src="__PUBLIC__/Uploads/{$val['sendpicname']}" width="40" height="40" alt="">
+                        我&nbsp;对<a href="{:U('Person/index',array('id'=>$val['getid']))}">{$val.getnickname}</a>&nbsp;说：
+                        </td>
+                      </tr>
+                      <tr></tr>
+                      <tr></tr>
+                      <tr>
+                         <td>
+                            <div style="width:500px;overflow:hidden;">
+                               &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$val.text}
+                                <if condition="$val['picname'] neq 'null.jpg'">
+                                  <div class="small" style="width:200px;height:200px"><img src="__PUBLIC__/Uploads/{$val['picname']}" width="200" height="220" alt=""></div><img src="__PUBLIC__/Uploads/{$val['picname']}" class="big" height="400" alt="">
+                                  </else>
+                                </if>
+                            </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td><span style="color:#ccc">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;发表于 {$val.time}</span></td>
+                      </tr>
+                   </foreach>
+                      <tr>
+                        <td>{$pageButton}</td>
+                      </tr>
+                    </table>
+
+                    
+              </div>
+              </div>
+              <br/>
+            <!--个人展示结束-->
+     
+        </div>
+      </div>
+      <!-- 左侧mainBanner DIV 结束-->
+      <script type="text/javascript">
+       
+           $('.small').mouseover(function(){
+
+            var offset = $(this).offset(); 
+            $(this).next().css('top',(offset.top-400)).css('left',(offset.left-100)).css('display','block');
+             
+           });
+           $('.small').mouseout(function(){
+            $(this).next().css('display','none');
+           });
+        
+      </script>
+      
+
+      <!-- 导入右侧 侧边栏-->
+      <include file="public/right" />
+    <!-- 内容总容器 mainDIV 结束-->
+
+<!-- 导入footer部分 -->
+  <include file="public/footer" />

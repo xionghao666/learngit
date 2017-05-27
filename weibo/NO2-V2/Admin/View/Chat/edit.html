@@ -1,0 +1,25 @@
+<include file="public/header" />
+<include file="public/nav.html" />
+<div class="row-fluid" id="main">
+		<div class="span8 offset2">	
+			<form class="form-horizontal" action="{:U('edit')}" method="post">
+				<input type="hidden" name="id" value="{$info.id}">
+				<h3>个人基本信息</h3>
+				<div class="control-group">
+					<label class="control-label" for="inputEmail">私信内容</label>
+					<div class="controls">
+						<textarea name="text" value="{$info.text}" id="inputEmail" style="resize: none;"></textarea>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox">
+							&nbsp;
+						</label>
+						<button class="btn btn-large btn-primary form-submit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;提交&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>
+			</form>			
+		</div>
+	</div>
+<include file="public/footer" />

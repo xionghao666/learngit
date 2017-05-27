@@ -1,0 +1,59 @@
+
+	<include file="Public/header" />
+	<include file="Public/nav" />
+	
+	
+	<div class="row-fluid" id="main">
+		<div class="span8 offset2">		
+		    <form class="form-search fr" action="{:U('index')}" method="get">
+		    	<input type="text" name="uid" value="{$Think.get.name}" class="input-medium" placeholder="用户ID">
+		    	
+		    	<button type="submit" class="btn">搜索</button>
+		    </form>
+
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>编号</th>
+					<th>用户ID</th>
+					<th>关注用户ID</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				 <notempty name="interlist">
+				   <foreach name="interlist" item="val">
+					<tr>
+						<td>{$val.id}</td>
+						<td>{$val.uid}</td>
+						<td>{$val.gzid}</td>
+						
+						
+						<td>
+							<a href="{:U('Inter/del',array('id'=>$val['id']))}">删除</a> 
+						</td>
+					</tr>
+					</foreach>
+				   <else />
+				   <tr>
+				   	  <td colspan="4">查无此数据</td>
+				   </tr>	
+					</notempty>
+				</tbody>
+				
+			</table>
+			<div class="pagination">
+				<ul>
+					{$pageButton}
+				</ul>
+			</div>
+		</div>
+	</div>
+	 <script>
+	 	
+	 	$('.pagination ul a').unwrap('div').wrap('<li></li>');
+	 	$('.pagination ul span').wrap('<li class="active"></li>')
+	 </script>
+	<include file="Public/footer" />
+	
+	

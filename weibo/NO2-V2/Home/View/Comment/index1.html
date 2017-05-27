@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<a href="{:U('Index/index')}">返回上一页</a>
+	
+
+	<br/>
+	<table  border="1px" width="30%" >
+		<tr>
+			<td ><img width="50px" src="__PUBLIC__/Uploads/{$text.head}"><b  style="font-weight:bold;">@{$text.nickname}:</b>
+			<br/>&nbsp;&nbsp;{$text.text}<br/><br/><br/><br/>
+			发表于 {$text.addtime}</td><br/>
+		</tr>
+	</table>
+	<form action="{:U('index')}" method="post">
+	    <p >发表评论:</p>
+	    <textarea type="text" name="text" cols="80" rows="4"></textarea><br/>
+	    <input type="hidden" name="tid" value="{$text.id}"></input>
+	    <input type="submit" value="发表">
+	</form>
+	
+	<p>所有评论:</p>
+	<foreach name="info" key="k" item="val">
+	<table  border="1px" width="30%">
+		<tr style="color: whiteyellow">
+			<img src=""><td><b style="font-weight:bold;">@{$val.sendname}:</b><br/>&nbsp;&nbsp;{$val.text}
+			<br/><br/><br/>发表于 {$val.addtime}</td>
+			<td  align='center'>
+				<a href="{:U('Comment/reply',array('id'=>$val['id'],'tid'=>$val['tid']))}">回复</a>
+				<a href="{:U('del',array('id'=>$val['id'],'tid'=>$val['tid']))}">{$val.delButton}</a>
+				<a href="{:U('praise',array('id'=>$val['id']))}">{$val.praiseButton}({$val.praisenum})</a>
+			</td>
+		</tr><br/>
+	</table>
+	</foreach>
+	<foreach name="huifu" item="value">
+	<table  border="1px" width="28%">
+	<tr>
+		<img src=""><td><b style="font-weight:bold;">@{$value.sendname}</b>对<b style="font-weight:bold;">@{$value.getname}</b>说:<br/>&nbsp;&nbsp;{$value.text}
+		<br/><br/><br/>发表于 {$value.addtime}</td><br/>
+		<td align="center">
+			<a href="{:U('Comment/reply',array('id'=>$value['id'],'tid'=>$val['tid']))}">回复</a>
+			<a href="{:U('del',array('id'=>$value['id']))}">{$value.delButton}</a>
+			<a href="{:U('praise',array('id'=>$value['id']))}">{$value.praiseButton}({$value.praisenum})</a>
+		</td>
+	</tr>
+	</table>
+	</foreach>
+</body>
+</html>

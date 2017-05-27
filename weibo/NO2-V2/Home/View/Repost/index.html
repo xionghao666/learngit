@@ -1,0 +1,100 @@
+ <!--导入 头部文件-->
+ <include file="public/header" />
+ <!--导入配置文件-->
+<link href="__PUBLIC__/styles/CustomerIndex.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/styles/global.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="__PUBLIC__/script/CustomerIndex.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/trim.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/jquery-1.6.2.min.js"></script>
+    <!-- 内容总容器 mainDIV 开 始-->
+   <div id="main">
+        <!-- 左侧mainBannerDIV 开始 -->
+    <div id="mainBanner">
+        	<!-- mainBannerTop DIV 开始 -->
+      <div id="mainBannerTop">
+            <!--id=mainBannerTopIssue 发布框-->
+        <div id="mainBannerTopIssue">
+          <!--id=mainBannerTopIssuePoint 提示-->
+          <div id="mainBannerTopIssuePoint">转发微博
+          </div>
+          <div style="float:right;">您还可以输入<font id="counter1">140</font>字！
+          </div>
+
+
+          <form action="{:U('index')}" method="post">
+          <div id="mainBannerTopIssueForm">
+                  <!--id="mainBannerTopIssueFrame-->
+          <div id="mainBannerTopIssueFrame">
+
+
+          <if condition="$result1 neq null">
+          <textarea name="text" rows="4" class="Size" id="textfield2"  style="overflow:hidden;border:1px #0CF solid;" onkeyup="calNum(this,counter1,0)">//@{$result1.nickname}:{$result1.text}</textarea>
+          <else />
+          <textarea name="text" rows="4" class="Size" id="textfield2"  style="overflow:hidden;border:1px #0CF solid;" onkeyup="calNum(this,counter1,0)"></textarea>
+          </if>
+
+          <input type="hidden" name="tid" value="{$result.id}"></input>
+          <input type="hidden" name="ttid" value="{$result1.id}"></input>
+          </div>
+                  <!--id="mainBannerTopIssueInsert 插入链接-->
+              <div id="mainBannerTopIssueInsert">
+                  <!--4个小div-->
+              </div>
+                <!--确认发布-->
+              <div id="mainBannerTopIssueSure">
+                <div id="mainBannerTopIssueSure2">
+                  <input type="submit" value="转发">
+                </div>
+              </div>
+              </div>
+          </form>
+          </div>
+        </div>
+            <!--id="mainBannerTitle 首页-->
+            <div id="mainBannerTitle">
+                <!--id="mainBannerTitleWord"-->
+                <div id="mainBannerTitleWord"><b>微博内容</b>
+                </div> 
+            </div> 
+            <!--不同人的内容-->
+        <div id="mainBannerContent">
+            <!--个人展示-->
+                <div class="stateShowWord">
+                  <table width="450" border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                    <tr>
+                      <td width="70" align="center" valign="top">
+                        <a href="#">
+                          <img width="50px" src="__PUBLIC__/Uploads/{$result.head}">
+                      </td>
+                      <td width="380" ><a href="#">@{$result.nickname}:</a>
+                        <!--会员标志图片-->
+                        <!-- 
+                        <img src="__PUBLIC__/images/1.gif" align="absmiddle" style="border:none;" /> 
+                        -->
+                        {$result.text}
+                      </td>
+
+                    </tr>
+                    <!--微博附带图片-->
+                  </table>
+                </div>
+                  <if condition="$result['picname'] neq null">
+                    <div class="stateImgShow">
+                    <img width="100px" src="__PUBLIC__/Uploads/{$result.picname}" />
+                    </div>  
+                  </if>  
+                <div class="stateShowtime"> {$text.addtime} </div>
+              </div>
+              <br/>
+            <!--个人展示结束-->
+
+        </div>
+      </div>
+      <!-- 左侧mainBanner DIV 结束-->
+
+      <!-- 导入右侧 侧边栏-->
+      <include file="public/right" />
+    <!-- 内容总容器 mainDIV 结束-->
+
+<!-- 导入footer部分 -->
+  <include file="public/footer" />

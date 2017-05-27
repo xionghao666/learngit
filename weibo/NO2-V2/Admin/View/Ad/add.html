@@ -1,0 +1,31 @@
+<include file="public/header" />
+<include file="public/nav" />
+<div class="row-fluid" id="main">
+		<div class="span8 offset2">	
+			<form class="form-horizontal " action="{:U('add')}" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="id" value="{$info.id}">
+				<h3>广告内容</h3>
+				<div class="control-group">
+					<label class="control-label" for="inputEmail"></label>
+					<div class="controls">
+					广告图片：<input type="file" id="inputEmail" name="picname"/><br/>
+					状&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;态：<select name="start">
+							<option value="1">停用</option>
+							<option value="2">启用</option>
+						</select>
+						<br/>
+					链接地址：<input type="text" id="inputEmail" name="url"/><br/>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox">
+							&nbsp;
+						</label>
+						<button class="btn btn-large btn-primary form-submit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>		
+			</form>			
+		</div>
+	</div>
+	<include file="public/footer" />

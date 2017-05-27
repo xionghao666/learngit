@@ -1,0 +1,128 @@
+﻿ <!--导入 头部文件-->
+ <include file="public/header" />
+ <!--导入配置文件-->
+<link href="__PUBLIC__/styles/CustomerIndex.css" type="text/css" rel="stylesheet" />
+<link href="__PUBLIC__/styles/global.css" type="text/css" rel="stylesheet" />
+<script language="javascript" src="__PUBLIC__/script/CustomerIndex.js" ></script>
+<script language="javascript" src="__PUBLIC__/script/trim.js" ></script>
+    <!-- 内容总容器 mainDIV 开 始-->
+    <div id="main">
+        <!-- 左侧mainBannerDIV 开始 -->
+    <div id="mainBanner">
+        	<!-- mainBannerTop DIV 开始 -->
+        <div id="mainBannerTop">
+            <!--id=mainBannerTopIssue 发布框-->
+            <div id="mainBannerTopIssue">
+            <!--id=mainBannerTopIssuePoint 提示-->
+            <div id="mainBannerTopIssuePoint">发布微博
+            </div>
+            <div style="float:right;">您还可以输入<font id="counter1">140</font>字！
+            </div>
+            <form action="{:U('add')}" method="post" name="myform" enctype="multipart/form-data">
+            <div id="mainBannerTopIssueForm">
+                  <!--id="mainBannerTopIssueFrame-->
+            <div id="mainBannerTopIssueFrame">
+            <textarea name="text" rows="4" class="Size" id="textfield2" maxlength="140"  style="overflow:hidden;border:1px #0CF solid;resize:none;" onkeyup="check(this)"></textarea>
+            <script>
+                var counter1 = document.getElementById('counter1');
+                var num = 140; 
+                function check(obj){
+                    var msg = obj.value;
+                    counter1.innerHTML = num - msg.length; 
+                 }
+            </script>
+            </div>
+                  <!--id="mainBannerTopIssueInsert 插入链接-->
+                <div id="mainBannerTopIssueInsert">
+                  <!--4个小div-->
+                </div>
+                <!--确认发布-->
+                <div id="mainBannerTopIssueSure">
+                <div id="mainBannerTopIssueSure2">
+                    <div id="mainBannerTopIssueInsert1">
+                        <input style="opacity: 0" type="file" id="inputEmail" multiple="" name="picname[]">
+                    </div>
+                    <div id="mainBannerTopIssueInsert2">插入图片</div>
+                    <input type="submit" value="发布" style="background-color: #3295E6;width:70px;height: 30px;">
+                </div>
+            </div>
+            </div>
+            </form>
+            </div>
+        </div>
+            <!--id="mainBannerTitle 首页-->
+            <div id="mainBannerTitle">
+                <!--id="mainBannerTitleWord"-->
+                <div id="mainBannerTitleWord"><b>浏览微博</b>
+                </div>
+            </div> 
+            <!--不同人的内容-->
+        <div id="mainBannerContent">
+            <!--微博展示-->
+            <foreach name="result" item="val"><br/><br/><br/>
+                <div class="stateShowWord">
+                    <table width="450" border="0" cellpadding="0" cellspacing="0" class="stateTable">
+                    <tr>
+                        <td width="70" align="center" valign="top">
+                            <a href="{:U('Person/index',array('id'=>$val['uid']))}"><img src="__PUBLIC__/Uploads/{$val.head}" alt="" width="48" height="48" /></a>
+                        </td>
+                        <td width="380" ><a href="{:U('Person/index',array('id'=>$val['uid']))}">{$val.nickname}:</a>
+                        <!--会员标志图片-->
+                        {$val.text}
+                        </td>
+                    </tr>
+                    </table>
+                </div>
+                <!--微博附带图片-->
+                <if condition="$val['picname'] neq null">
+                    <div class="stateImgShow">
+                    <div class="small" style="width:100px">
+                        <img width="100px" src="__PUBLIC__/Uploads/{$val.picname}" />
+                    </div><img class="big" width="150px" src="__PUBLIC__/Uploads/{$val.picname}" /> 
+                    </div>
+                </if>
+                <if condition="$val['repost'] neq null">
+                    <td><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="{:U('Person/index',array('id'=>$val['repost']['uid']))}"><img src="__PUBLIC__/Uploads/{$val['repost'].head}" width="30px"><b style="font-weight:bold;"></a>&nbsp;<a href="{:U('Person/index',array('id'=>$val['repost']['uid']))}">@{$val['repost'].nickname}</a>:</b><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$val['repost'].text}<br/><br/></td>
+                    <if condition="$val['repost']['picname'] neq null">
+                        <div class="stateImgShow">
+                            <div class="small" style="width:70px">
+                                <img width="70px" src="__PUBLIC__/Uploads/{$val['repost']['picname']}" />
+                            </div><img class="big" width="90px" src="__PUBLIC__/Uploads/{$val['repost']['picname']}" />
+                            
+                        </div> 
+                    </if>
+                </if>
+                <div class="stateShowtime"> {$val.addtime} </div>
+                <div class="stateOp">
+                <br/><br/>
+                    <a class="opState" href="{:U('collect',array('id'=>$val['id']))}">{$val.collectButton}</a>
+                    <a class="opState" href="{:U('Repost/index',array('id'=>$val['id'],'tid'=>$val['tid']))}">转发({$val.repostnum})</a>
+                    <a class="opState" href="{:U('Comment/index',array('id'=>$val['id']))}">评论({$val.commentnum})</a>
+                    <!-- <a class="opState" onclick="reXianShi(this)">评论({$val.commentnum})</a> -->
+                    <a class="opState" href="{:U('praise',array('id'=>$val['id']))}">{$val.praiseButton}({$val.praisenum})</a>
+                    <a class="opState" href="{:U('del',array('id'=>$val['id']))}">{$val.delButton}</a>
+                    <a class="opState" href="{:U('Sx/index',array('getid'=>$val['uid']))}">{$val.mesButton}</a>
+                </div>
+            </foreach>
+            <!--个人展示结束-->
+            
+        </div>
+        <div align="center">{$pageButton}</div>
+    </div>
+    <!-- 引入放大镜JS特效 -->
+    <script type="text/javascript">
+       
+           $('.small').mouseover(function(){
+            var offset = $(this).offset(); 
+            $(this).next().css('top',(offset.top-700)).css('left',(offset.left-100)).css('display','block');
+           });
+           $('.small').mouseout(function(){
+            $(this).next().css('display','none');
+           });
+        
+    </script>
+    <!-- 引入放大镜JS特效 -->
+<!-- 导入右侧 侧边栏-->
+<include file="public/right" />
+<!-- footer部分 -->
+<include file="public/footer" />

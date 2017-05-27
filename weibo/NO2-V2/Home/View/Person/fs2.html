@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	 <table width="700" border="1" align="center">
+	 	<tr>
+		   <th>ID</th>			
+		   <th>username</th>			
+		   <th>name</th>			
+		   <th>sex</th>			
+	    </tr>
+	   
+	    <foreach name="userinfo" item="val">
+           <foreach name="val" item="kk">
+                <tr>
+                	<td>{$kk.id}</td>
+                	<td>{$kk.username}</td>
+                	<td>{$kk.name}</td>
+                	<td>{$kk.sex}</td>
+                </tr>
+           </foreach>
+	    </foreach>
+	 </table>
+</body>
+</html>

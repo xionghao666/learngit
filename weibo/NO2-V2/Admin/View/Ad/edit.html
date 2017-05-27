@@ -1,0 +1,32 @@
+<include file="public/header" />
+<include file="public/nav" />
+<div class="row-fluid" id="main">
+		<div class="span8 offset2">	
+			<form class="form-horizontal " action="{:U('edit')}" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="id" value="{$info.id}">
+				<h3>广告内容</h3>
+				<div class="control-group">
+					<label class="control-label" for="inputEmail"></label>
+					<div class="controls">
+						<input type="hidden" id="inputEmail" name="id" value="{$adinfo['id']}" />
+						<input type="file" id="inputEmail" name="picname"/><br/>
+						<input type="hidden" id="inputEmail" name="picname" value="{$adinfo['picname']}" />
+						<select name="start">
+							<option value="1" {$adinfo['start']==1?'selected':''}>停用</option>
+							<option value="2" {$adinfo['start']==2?'selected':''}>启用</option>
+						</select><br/>
+						<input type="text" id="inputEmail" name="url" value="{$adinfo['url']}" /><br/>
+					</div>
+				</div>
+				<div class="control-group">
+					<div class="controls">
+						<label class="checkbox">
+							&nbsp;
+						</label>
+						<button class="btn btn-large btn-primary form-submit" type="submit">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确定&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+					</div>
+				</div>		
+			</form>			
+		</div>
+	</div>
+	<include file="public/footer" />

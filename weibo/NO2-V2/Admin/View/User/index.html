@@ -1,0 +1,82 @@
+
+	<include file="Public/header" />
+	<include file="Public/nav" />
+	
+	
+	<div class="row-fluid" id="main">
+		<div class="span8 offset2">		
+		    <form class="form-search fr" action="{:U('index')}" method="get">
+		    	<input type="text" name="username" value="{$Think.get.name}" class="input-medium" placeholder="用户名">
+		    	<select name="state">
+					<option value="">--请选择--</option>
+					<option value="1">普通用户</option>
+					<option value="2">管理员</option>
+					<option value="3">禁用</option>
+					<option value="4">VIP</option>
+				</select>
+		    	<button type="submit" class="btn">搜索</button>
+		    </form>
+
+			<table class="table table-striped">
+				<thead>
+				<tr>
+					<th>编号</th>
+					<th>用户名</th>
+					<th>密码</th>
+					<th>真实姓名</th>
+					<th>性别</th>
+					<th>地址</th>
+					<th>电话</th>
+					<th>E-mali</th>
+					<th>状态</th>
+					<th>头像</th>
+					<th>昵称</th>
+					<th>注册时间</th>
+					<th>操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				 <notempty name="userlist">
+				   <foreach name="userlist" item="val">
+					<tr>
+						<td>{$val.id}</td>
+						<td>{$val.username}</td>
+						<td>禁止读取</td>
+						<td>{$val.name}</td>
+						<td>{$val.sex}</td>
+						<td>{$val.address}</td>
+						<td>{$val.phone}</td>
+						<td>{$val.email}</td>
+						<td>{$val.state}</td>
+						<td><img width="50px" src="__PUBLIC__/Uploads/{$val.picname}" alt=""></td>
+						<td>{$val.nickname}</td>
+						<td>{$val.addtime}</td>
+						<td>
+							<a href="{:U('User/del',array('id'=>$val['id']))}">删除</a> |
+							<a href="{:U('User/edit',array('id'=>$val['id']))}">修改</a>
+						</td>
+					</tr>
+					</foreach>
+				   <else />
+				   <tr>
+				   	  <td colspan="11">查无此数据</td>
+				   </tr>	
+					</notempty>
+				</tbody>
+				
+			</table>
+			<div class="pagination">
+				<ul>
+					{$pageButton}
+				</ul>
+			</div>
+		</div>
+	</div>
+	 <script>
+	 	
+	 	$('.pagination ul a').unwrap('div').wrap('<li></li>');
+	 	$('.pagination ul span').wrap('<li class="active"></li>')
+	 </script>
+	<include file="Public/footer" />
+	
+	

@@ -1,0 +1,45 @@
+<div class="row-fluid" id="nav">	
+		<div class="span8 offset2" id="box">
+			<ul class="nav nav-pills">
+				<li>
+					<a href="{:U('index')}">首页</a>
+				</li>
+				<li class="dropdown" >
+					<a href="#"  class="dropdown-toggle" data-toggle="dropdown" href="#">用户管理<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{:U('User/add')}">添加用户</a></li>
+						<li><a href="{:U('User/index')}">用户列表</a></li>
+					</ul>
+				</li>
+				<li><a href="{:U('Text/index')}" id="text">微博管理</a></li>
+				<li><a href="{:U('Comment/index')}" id="text">评论管理</a></li>
+				<li><a href="{:U('Chat/index')}">私信管理</a></li>
+				<li><a href="{:U('Inter/index')}">用户关系管理</a></li>
+				<li class="dropdown" >
+					<a href="#"  class="dropdown-toggle" data-toggle="dropdown" href="#">微博话题管理<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{:U('Topic/add')}">添加话题</a></li>
+						<li><a href="{:U('Topic/index')}">话题列表</a></li>
+					</ul>
+				</li>
+				<li class="dropdown" >
+					<a href="#"  class="dropdown-toggle" data-toggle="dropdown" href="#">广告投放管理<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{:U('Ad/add')}">添加广告图</a></li>
+						<li><a href="{:U('Ad/index')}">广告列表</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="#"  class="dropdown-toggle" data-toggle="dropdown" href="#">admin<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{:U('login/logout')}">注销</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('#box ul li a').click(function(){
+			$this.parent().addClass('active').sibilings().removeClass('active');
+		})
+	</script>

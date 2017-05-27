@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+<script language="javascript" src="__PUBLIC__/jquery-1.7.2.min.js"></script>
+	<style>
+	   body{background-image:url(__PUBLIC__/images/meinv.jpg);background-repeat:round;}
+       #kk{float:left;margin:10px;width:160px;height:160px;overflow:hidden;}
+	   #big{margin-top:70px;margin-left:400px;width:600px;height:600px;}
+
+	</style>
+</head>
+<body>
+	<form action="{:U('Topic/choose')}" method="post">
+		
+	
+       <div id="big">
+       	<foreach name="topiclist" item="val">
+         <div id="kk">
+           <input type="checkbox" name="id[]" value="{$val.id}">
+           <div style="margin-top:10px;margin-left:10px;width:140px;height:100px;background-image: url(__PUBLIC__/images/{$val.picname});">
+           		
+           </div>
+         	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{$val.topic}
+         </div>
+     	</foreach>
+       </div>
+        <div style="position: absolute;left:1000px;top:400px;">
+           <div id="btn" style="height:80px;width: 80px;">
+           	<input type="image" src="__PUBLIC__/images/jiantou1.png" value="提交" style="height:80px;width:120px;" />
+           </div>
+        	
+        </div>
+     	
+    </form>
+    <div style="position: absolute;top: 20px;left: 1200px;"><a href="{:U('Person/index')}">返回</a></div>
+	
+</body>
+</html>
